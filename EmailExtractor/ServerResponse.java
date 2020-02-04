@@ -11,14 +11,9 @@ import java.util.regex.PatternSyntaxException;
 
 public class ServerResponse {
     private Set<String> emails = new HashSet<>();
-    private Pattern p = Pattern.compile("[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}");
 
     public String processInput(String theInput) throws Exception {
         System.out.println(theInput);
-        Matcher https = this.p.matcher(theInput);
-        if (https.matches()) {
-            return sendPingRequest(theInput);
-        }
         if (theInput.equals("3"))
             return "3";
         try {
