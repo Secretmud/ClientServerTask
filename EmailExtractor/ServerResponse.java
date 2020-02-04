@@ -48,38 +48,12 @@ public class ServerResponse {
                 emails.clear();
                 return email_addresses;
             } else {
-                System.out.println("NO EMAIL BUT VALID ADDRESS");
                 return "1 ";
             }
         } catch (PatternSyntaxException e) {
             return "4";
         } catch (Exception e) {
-            System.out.println("Exception MAIN ServerResponse");
-            return "4 ";
+            return "2";
         }
-    }
-
-    private String sendPingRequest(String address) throws Exception  {
-        Matcher m = this.p.matcher(address);
-        boolean b = m.matches();
-        try {
-            if (b) {
-                boolean connected = InetAddress.getByName(address).isReachable(100);
-                if (connected) {
-                    System.out.println("200 ok");
-                    System.out.println(InetAddress.getByName(address).getHostName().toUpperCase());
-                    System.out.println(InetAddress.getByName(address).getCanonicalHostName().toUpperCase());
-                    return "5";
-                } else {
-                    System.out.println("No 200");
-                    return "6";
-                }
-            }  
-        } catch (Exception e) {
-            System.out.println("No matches EXCEPTION SendingPingRequest");
-            return "4";
-        }
-        System.out.println("No matches outside try in SendingPingRequest");
-        return "4";
     }
 }
